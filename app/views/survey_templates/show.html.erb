@@ -1,0 +1,30 @@
+<%= form_with url: "/survey_templates/#{@survey_template.id}/surveys", scope: "survey", local: true do |form| %>
+  <% if @survey_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey_template.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% survey_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+
+    <div class="form-group">
+      <strong>Question:</strong>
+      <%= @survey_template.question %>
+    </div>
+
+    <div class="form-group">
+        <%= form.label "Yes", :value => "yes" %>
+        <%= form.radio_button :answer, "yes" %><br />
+        <%= form.label "No", :value => "no" %>
+        <%= form.radio_button :answer, "no" %>
+    </div>
+
+    <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to 'Back', root_path, class: "btn btn-danger" %>
+  </div>
+<%end%>

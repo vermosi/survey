@@ -1,0 +1,20 @@
+<%= form_with url: "/survey_template_surveys", local: true do |form| %>
+  <% if @survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :survey, "Answer" %>
+    <%= form.text_field :answer, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+<% end %>

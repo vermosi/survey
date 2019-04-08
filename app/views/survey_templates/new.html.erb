@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>New Survey</h1>
+    <div class="row">
+        <div class="form">
+        <%= render 'form', survey_template: @survey_template %>
+        <br />
+        <%= link_to 'Back', root_path, class: "btn btn-danger" %>
+        </div>
+    </div>
+</div>

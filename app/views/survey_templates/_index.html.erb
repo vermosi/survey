@@ -1,0 +1,34 @@
+<div class="container">
+
+<h1>Surveys</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>% Yes</th>
+      <th>% No</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @survey_templates.each do |survey_template| %>
+      <tr>
+        <td><%= link_to survey_template.question, survey_template %></td>
+        <td><%= survey_template.yes.round(2) %></td>
+        <td><%= survey_template.no.round(2) %></td>
+        <% if session["user_id"] != nil %>
+          <td><%= link_to 'Edit', edit_survey_template_path(survey_template) %></td>
+          <td><%= link_to 'Destroy', survey_template,  method: :delete, data: { confirm: 'Are you sure?' }%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if session["user_id"] != nil %>
+  <%= link_to 'New Survey', new_survey_template_path, class: "btn btn-primary" %>
+<% end %>
+</div>
